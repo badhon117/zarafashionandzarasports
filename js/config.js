@@ -1,14 +1,13 @@
 /* ============================================================
    ShopBD — কনফিগারেশন ফাইল
    শুধু এই ফাইলটি এডিট করলেই সব সেটিংস বদলানো যাবে।
-   বাকি সব ফাইল ডাইনামিক (Firebase থেকে পড়ে)।
    ============================================================ */
 
 // 🔐 অ্যাডমিন পাসওয়ার্ড (এটা পরিবর্তন করো!)
 const ADMIN_PASSWORD = "McBn@2509";
 
-// 🔥 Firebase কনফিগ (console.firebase.google.com থেকে নাও)
-const firebaseConfig = {
+// 🔥 Firebase কনফিগ (এখানে FIREBASE_CONFIG নাম দিতে হবে, বড় হাতের অক্ষরে)
+const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDIZxjVfugpnD4UDhTxb4NWrwEdPuapKqA",
   authDomain: "zara-fashion-and-zara-sports.firebaseapp.com",
   projectId: "zara-fashion-and-zara-sports",
@@ -17,20 +16,19 @@ const firebaseConfig = {
   appId: "1:397669585408:web:b342fa39cb8f6a2d65fee5"
 };
 
-// ☁️ Cloudinary কনফিগ (cloudinary.com থেকে নাও)
-const CLOUDINARY_CLOUD_NAME = "er7pnr3d";
+// ☁️ Cloudinary কনফিগ (এখানে তোমার স্ক্রিনশটের সঠিক নামটা বসানো হলো)
+const CLOUDINARY_CLOUD_NAME = "er7pmr3d"; 
 const CLOUDINARY_UPLOAD_PRESET = "shop_upload";
 
 // ============================================================
-// 🎁 ডিফল্ট ডাটা — প্রথমবার সাইট খুললে এগুলো দেখাবে
-// (অ্যাডমিন প্যানেল থেকে এডিট/ডিলিট করা যাবে)
+// 🎁 ডিফল্ট ডাটা
 // ============================================================
 
 const DEFAULT_SETTINGS = {
   shopName: "Zara Fashon & Zara Sports",
   tagline: "মানসম্মত কাপড়ের বিশ্বস্ত ঠিকানা",
-  logo: "",                    // খালি থাকলে টেক্সট লোগো দেখাবে
-  banner: "",                  // খালি থাকলে গ্রেডিয়েন্ট দেখাবে
+  logo: "",                    
+  banner: "",                  
   phone: "8801718788999",
   whatsapp: "8801718788999",
   address: "এসআরডি কলেজ রোড, রামপুর বাজার, কিশোরগঞ্জ",
@@ -94,36 +92,3 @@ const DEFAULT_PRODUCTS = [
     likes: 5
   }
 ];
-
-// ============================================================
-// 🛠️ হেল্পার ফাংশন (এগুলো বদলানোর দরকার নেই)
-// ============================================================
-
-// ডিফল্ট ডাটা দিয়ে Firebase ইনিশিয়ালাইজ করা
-async function initializeDefaults(db, collection, addDoc, getDocs) {
-  try {
-    const settingsSnap = await getDocs(collection(db, "settings"));
-    if (settingsSnap.empty) {
-      await addDoc(collection(db, "settings"), DEFAULT_SETTINGS);
-      console.log("✅ ডিফল্ট সেটিংস তৈরি হয়েছে");
-    }
-
-    const catSnap = await getDocs(collection(db, "categories"));
-    if (catSnap.empty) {
-      for (const cat of DEFAULT_CATEGORIES) {
-        await addDoc(collection(db, "categories"), { ...cat, createdAt: new Date() });
-      }
-      console.log("✅ ডিফল্ট ক্যাটাগরি তৈরি হয়েছে");
-    }
-
-    const prodSnap = await getDocs(collection(db, "products"));
-    if (prodSnap.empty) {
-      for (const prod of DEFAULT_PRODUCTS) {
-        await addDoc(collection(db, "products"), { ...prod, createdAt: new Date() });
-      }
-      console.log("✅ ডিফল্ট পণ্য তৈরি হয়েছে");
-    }
-  } catch (err) {
-    console.error("ডিফল্ট ডাটা তৈরিতে সমস্যা:", err);
-  }
-}
