@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — ShopBD</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ লগইন স্ক্রিন ============ -->
+<div class="admin-login" id="loginScreen">
+  <div class="admin-login-box">
+    <h2>🔐 অ্যাডমিন লগইন</h2>
+    <input type="password" id="adminPass" placeholder="পাসওয়ার্ড" autocomplete="off">
+    <button onclick="login()">লগইন</button>
+    <p id="loginMsg" style="text-align:center;color:var(--danger);margin-top:12px;font-size:0.9rem;"></p>
+  </div>
+</div>
+
+<!-- ============ অ্যাডমিন প্যানেল ============ -->
+<div class="admin-panel" id="adminPanel">
+  <div class="container">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+      <h1 style="font-size:1.5rem;">⚙️ অ্যাডমিন প্যানেল</h1>
+      <div style="display:flex;gap:8px;">
+        <a href="index.html" class="btn-outline" style="padding:8px 16px;font-size:0.9rem;">🏠 সাইট দেখুন</a>
+        <button onclick="logout()" class="btn-danger" style="padding:8px 16px;border-radius:8px;font-weight:600;">লগআউট</button>
+      </div>
+    </div>
+
+    <!-- স্ট্যাটস -->
+    <div class="stats-grid">
+      <div class="stat-card"><div class="label">মোট পণ্য</div><div class="value" id="statProducts">0</div></div>
+      <div class="stat-card"><div class="label">ক্যাটাগরি</div><div class="value" id="statCategories">0</div></div>
+      <div class="stat-card"><div class="label">মোট লাইক</div><div class="value" id="statLikes">0</div></div>
+    </div>
+
+    <!-- ট্যাব -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('settings', this)">🏪 দোকানের তথ্য</button>
+      <button class="tab-btn" onclick="switchTab('categories', this)">📁 ক্যাটাগরি</button>
+      <button class="tab-btn" onclick="switchTab('products', this)">👕 পণ্য</button>
+      <button class="tab-btn" onclick="switchTab('backup', this)">💾 ব্যাকআপ</button>
+    </div>
+
+    <!-- ============ ট্যাব: দোকানের তথ্য ============ -->
+    <div class="tab-content active" id="tab-settings">
+      <div class="admin-card">
+        <form id="settingsForm">
+          <h3 style="margin-bottom:16px;">মূল তথ্য</h3>
+          <div class="form-group">
+            <label>দোকানের নাম *</label>
+            <input type="text" id="s_shopName" required>
+          </div>
+          <div class="form-group">
+            <label>স্লোগান / ট্যাগলাইন</label>
+            <input type="text" id="s_tagline">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>ফোন</label>
+              <input type="tel" id="s_phone" placeholder="01712345678">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp (৮৮ সহ)</label>
+              <input type="tel" id="s_whatsapp" placeholder="8801712345678">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ঠিকানা</label>
+            <textarea id="s_address" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Google Maps লিংক</label>
+            <input type="url" id="s_mapLink" placeholder="https://maps.google.com/...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>খোলার সময়</label>
+              <input type="text" id="s_openTime" placeholder="সকাল ১০টা - রাত ৯টা">
+            </div>
+            <div class="form-group">
+              <label>বন্ধের দিন</label>
+              <input type="text" id="s_openDays" placeholder="শুক্রবার বন্ধ">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Facebook লিংক</label>
+              <input type="url" id="s_facebook">
+            </div>
+            <div class="form-group">
+              <label>Instagram লিংক</label>
+              <input type="url" id="s_instagram">
+            </div>
+          </div>
+
+          <h3 style="margin:24px 0 16px;">ব্র্যান্ডিং</h3>
+          <div class="form-group">
+            <label>লোগো (ঐচ্ছিক — খালি থাকলে টেক্সট দেখাবে)</label>
+            <input type="file" id="s_logoFile" accept="image/*">
+            <div id="logoPreviewWrap"></div>
+          </div>
+          <div class="form-group">
+            <label>ব্যানার ছবি (হোমপেজের হিরো)</label>
+            <input type="file" id="s_bannerFile" accept="image/*">
+            <div id="bannerPreviewWrap"></div>
+          </div>
+
+          <h3 style="margin:24px 0 16px;">থিমের রঙ</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>প্রাইমারি রঙ</label>
+              <input type="color" id="s_primaryColor" style="height:50px;padding:4px;">
+            </div>
+            <div class="form-group">
+              <label>অ্যাকসেন্ট রঙ</label>
+              <input type="color" id="s_accentColor" style="height:50px;padding:4px;">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;margin-top:16px;">
+            💾 সেভ করুন
+          </button>
+          <p id="settingsMsg" style="text-align:center;margin-top:12px;"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ ট্যাব: ক্যাটাগরি ============ -->
+    <div class="tab-content" id="tab-categories">
+      <div class="admin-card" style="max-width:100%;">
+        <h3 style="margin-bottom:16px;">নতুন ক্যাটাগরি যোগ করুন</h3>
+        <form id="categoryForm" style="display:grid;grid-template-columns:1fr 80px 80px auto;gap:8px;align-items:end;">
+          <div>
+            <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:4px;">নাম</label>
+            <input type="text" id="catName" placeholder="শাড়ি" required style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);">
+          </div>
+          <div>
+            <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:4px;">ইমোজি</label>
+            <input type="text" id="catEmoji" placeholder="🥻" maxlength="4" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);">
+          </div>
+          <div>
+            <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:4px;">ক্রম</label>
+            <input type="number" id="catOrder" value="1" min="1" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);">
+          </div>
+          <button type="submit" class="btn-primary" style="padding:10px 16px;">যোগ</button>
+        </form>
+      </div>
+
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>ইমোজি</th><th>নাম</th><th>ক্রম</th><th>পণ্য</th><th>অ্যাকশন</th></tr>
+          </thead>
+          <tbody id="categoryTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ ট্যাব: পণ্য ============ -->
+    <div class="tab-content" id="tab-products">
+      <div class="admin-card" style="max-width:100%;">
+        <h3 style="margin-bottom:16px;" id="productFormTitle">নতুন পণ্য যোগ করুন</h3>
+        <form id="productForm">
+          <input type="hidden" id="editProductId">
+          <div class="form-row">
+            <div class="form-group">
+              <label>পণ্যের নাম *</label>
+              <input type="text" id="p_name" required>
+            </div>
+            <div class="form-group">
+              <label>ক্যাটাগরি *</label>
+              <select id="p_category" required></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>দাম (৳) *</label>
+              <input type="number" id="p_price" required min="0">
+            </div>
+            <div class="form-group">
+              <label>আগের দাম (ঐচ্ছিক)</label>
+              <input type="number" id="p_oldPrice" min="0">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>ব্র্যান্ড</label>
+              <input type="text" id="p_brand">
+            </div>
+            <div class="form-group">
+              <label>স্টক স্ট্যাটাস</label>
+              <select id="p_inStock">
+                <option value="true">স্টকে আছে</option>
+                <option value="false">স্টক নেই</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>রঙ (কমা দিয়ে আলাদা)</label>
+            <input type="text" id="p_colors" placeholder="লাল, নীল, সবুজ">
+          </div>
+          <div class="form-group">
+            <label>সাইজ (কমা দিয়ে আলাদা)</label>
+            <input type="text" id="p_sizes" placeholder="M, L, XL / ফ্রি সাইজ">
+          </div>
+          <div class="form-group">
+            <label>বর্ণনা</label>
+            <textarea id="p_description" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" id="p_featured" style="width:auto;">
+              <span>হোমপেজে "জনপ্রিয়" হিসেবে দেখাও</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>ছবি (একাধিক সিলেক্ট করা যাবে)</label>
+            <input type="file" id="p_images" accept="image/*" multiple>
+            <div id="productImagesPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:16px;">
+            <button type="submit" class="btn-primary" style="flex:1;">
+              <span id="productSubmitText">যোগ করুন</span>
+            </button>
+            <button type="button" class="btn-outline" id="cancelEditBtn" onclick="cancelProductEdit()" style="display:none;">বাতিল</button>
+          </div>
+          <p id="productMsg" style="text-align:center;margin-top:12px;"></p>
+        </form>
+      </div>
+
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>ছবি</th><th>নাম</th><th>ক্যাটাগরি</th><th>দাম</th><th>স্টক</th><th>লাইক</th><th>অ্যাকশন</th></tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ ট্যাব: ব্যাকআপ ============ -->
+    <div class="tab-content" id="tab-backup">
+      <div class="admin-card" style="max-width:100%;">
+        <h3 style="margin-bottom:16px;">💾 ডাটা ব্যাকআপ</h3>
+        <p style="color:var(--text-muted);margin-bottom:20px;">
+          সব পণ্য, ক্যাটাগরি ও সেটিংস JSON ফাইলে ডাউনলোড করুন। ভবিষ্যতে দরকার হলে আবার আপলোড করা যাবে।
+        </p>
+        <button onclick="exportData()" class="btn-primary" style="width:100%;margin-bottom:12px;">
+          ⬇️ ডাটা এক্সপোর্ট করুন
+        </button>
+        <div style="border-top:1px solid var(--border);margin:20px 0;"></div>
+        <h3 style="margin-bottom:16px;">📤 ডাটা ইমপোর্ট</h3>
+        <p style="color:var(--text-muted);margin-bottom:12px;font-size:0.9rem;">
+          ⚠️ সতর্কতা: ইমপোর্ট করলে বর্তমান ডাটা প্রতিস্থাপিত হবে না, শুধু নতুন ডাটা যোগ হবে।
+        </p>
+        <input type="file" id="importFile" accept="application/json" style="margin-bottom:12px;">
+        <button onclick="importData()" class="btn-outline" style="width:100%;">
+          ⬆️ ইমপোর্ট করুন
+        </button>
+        <p id="backupMsg" style="text-align:center;margin-top:12px;"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

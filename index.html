@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="মানসম্মত কাপড়ের বিশ্বস্ত ঠিকানা। শাড়ি, পাঞ্জাবি, থ্রি-পিস, শার্ট — সব এক জায়গায়।">
+  <meta property="og:title" content="আমার দোকান — কাপড়ের সংগ্রহ">
+  <meta property="og:description" content="মানসম্মত কাপড়ের বিশ্বস্ত ঠিকানা">
+  <meta property="og:type" content="website">
+  <title>হোম — আমার দোকান</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+<div id="drawerContainer"></div>
+
+<section class="hero" id="heroBanner">
+  <div class="hero-content">
+    <h1 id="heroTitle">আমার দোকান</h1>
+    <p id="heroTagline">মানসম্মত কাপড়ের বিশ্বস্ত ঠিকানা</p>
+    <a href="shop.html" class="hero-btn">সব কাপড় দেখুন →</a>
+  </div>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">ক্যাটাগরি</h2>
+  <div class="category-grid" id="categoryGrid">
+    <div class="skeleton" style="height:120px;"></div>
+    <div class="skeleton" style="height:120px;"></div>
+    <div class="skeleton" style="height:120px;"></div>
+    <div class="skeleton" style="height:120px;"></div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">🔥 জনপ্রিয় কাপড়</h2>
+  <div class="product-grid" id="featuredGrid">
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+  </div>
+  <div style="text-align:center; margin-top:30px;">
+    <a href="shop.html" class="btn-outline">সব কাপড় দেখুন</a>
+  </div>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">✨ নতুন এসেছে</h2>
+  <div class="product-grid" id="newGrid"></div>
+</section>
+
+<section class="section container">
+  <div style="background:linear-gradient(135deg, var(--primary), var(--accent)); border-radius:var(--radius); padding:40px 24px; text-align:center; color:white;">
+    <h2 style="margin-bottom:12px; font-size:1.6rem;">📍 দোকানে এসে দেখুন</h2>
+    <p id="visitInfo" style="margin-bottom:20px; opacity:0.95;"></p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="#" id="mapBtn" target="_blank" class="hero-btn">🗺️ ম্যাপে দেখুন</a>
+      <a href="#" id="waBtn" target="_blank" class="hero-btn" style="background:#25d366; color:white;">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/home.js"></script>
+</body>
+</html>

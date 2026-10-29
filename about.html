@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>দোকান সম্পর্কে — আমার দোকান</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+<div id="drawerContainer"></div>
+
+<section class="section container">
+  <div class="text-center mb-4" style="padding:20px 0;">
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:12px;" id="shopNameHero">আমার দোকান</h1>
+    <p style="color:var(--text-muted);font-size:1.1rem;" id="taglineHero"></p>
+  </div>
+
+  <div style="max-width:800px;margin:0 auto;">
+    <div class="admin-card" style="max-width:100%;">
+      <h2 style="margin-bottom:20px;font-size:1.3rem;">📍 আমাদের ঠিকানা</h2>
+      <div style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;">
+        <span style="font-size:1.3rem;">🏠</span>
+        <div>
+          <div style="font-weight:600;margin-bottom:4px;">দোকানের ঠিকানা</div>
+          <div id="aboutAddress" style="color:var(--text-muted);">-</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;">
+        <span style="font-size:1.3rem;">🕐</span>
+        <div>
+          <div style="font-weight:600;margin-bottom:4px;">খোলার সময়</div>
+          <div id="aboutTime" style="color:var(--text-muted);">-</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;">
+        <span style="font-size:1.3rem;">📞</span>
+        <div>
+          <div style="font-weight:600;margin-bottom:4px;">ফোন</div>
+          <div id="aboutPhone" style="color:var(--text-muted);">-</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <span style="font-size:1.3rem;">💬</span>
+        <div>
+          <div style="font-weight:600;margin-bottom:4px;">WhatsApp</div>
+          <div id="aboutWa" style="color:var(--text-muted);">-</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-card" style="max-width:100%;margin-top:20px;">
+      <h2 style="margin-bottom:20px;font-size:1.3rem;">🗺️ ম্যাপে আমাদের খুঁজুন</h2>
+      <div id="mapContainer" style="border-radius:12px;overflow:hidden;border:1px solid var(--border);"></div>
+      <a href="#" id="mapLinkBtn" target="_blank" class="btn-primary" style="margin-top:16px;width:100%;">
+        🗺️ Google Maps এ খুলুন
+      </a>
+    </div>
+
+    <div class="admin-card" style="max-width:100%;margin-top:20px;">
+      <h2 style="margin-bottom:20px;font-size:1.3rem;">📱 যোগাযোগ করুন</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="#" id="callBtn" class="btn-primary" style="width:100%;justify-content:center;">
+          📞 ফোন করুন
+        </a>
+        <a href="#" id="waChatBtn" target="_blank" class="btn-primary btn-wa" style="width:100%;justify-content:center;">
+          💬 WhatsApp এ মেসেজ দিন
+        </a>
+        <a href="#" id="fbBtn" target="_blank" class="btn-outline" style="width:100%;justify-content:center;display:none;">
+          📘 Facebook পেজ
+        </a>
+        <a href="#" id="igBtn" target="_blank" class="btn-outline" style="width:100%;justify-content:center;display:none;">
+          📷 Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/about.js"></script>
+</body>
+</html>

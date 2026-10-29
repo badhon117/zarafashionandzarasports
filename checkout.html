@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>চেকআউট — ShopBD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">🛍️ ShopBD</a>
+    <div class="header-actions">
+      <a href="cart.html" class="icon-btn">🛒<span class="badge" id="cartBadge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="container" style="padding:30px 20px;">
+  <h1 class="section-title">💳 অর্ডার কনফার্ম করুন</h1>
+  <div class="cart-layout">
+    <div style="background:var(--card);padding:24px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h3 style="margin-bottom:16px;">ডেলিভারি তথ্য</h3>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label>পুরো নাম *</label>
+          <input type="text" id="name" required placeholder="আপনার নাম">
+        </div>
+        <div class="form-group">
+          <label>মোবাইল নম্বর *</label>
+          <input type="tel" id="phone" required placeholder="01XXXXXXXXX" pattern="01[0-9]{9}">
+        </div>
+        <div class="form-group">
+          <label>ঠিকানা *</label>
+          <textarea id="address" required rows="3" placeholder="বিস্তারিত ঠিকানা"></textarea>
+        </div>
+        <div class="form-group">
+          <label>জেলা</label>
+          <input type="text" id="city" placeholder="আপনার জেলা">
+        </div>
+        <div class="form-group">
+          <label>নোট (ঐচ্ছিক)</label>
+          <textarea id="note" rows="2" placeholder="বিশেষ কিছু বলার থাকলে"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">অর্ডার করুন ✓</button>
+      </form>
+    </div>
+
+    <div class="summary-card">
+      <h3 style="margin-bottom:16px;">অর্ডার সামারি</h3>
+      <div id="checkoutItems" style="margin-bottom:16px;"></div>
+      <div class="summary-row"><span>সাবটোটাল</span><span id="subtotal">৳ 0</span></div>
+      <div class="summary-row"><span>ডেলিভারি</span><span id="delivery">৳ 60</span></div>
+      <div class="summary-row total"><span>মোট</span><span id="grandTotal">৳ 0</span></div>
+    </div>
+  </div>
+</section>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

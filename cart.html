@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>কার্ট — ShopBD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <button class="icon-btn menu-toggle" onclick="openDrawer()">☰</button>
+    <a href="index.html" class="logo">🛍️ ShopBD</a>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="toggleTheme()">🌙</button>
+      <a href="cart.html" class="icon-btn">🛒<span class="badge" id="cartBadge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <a href="index.html">🏠 হোম</a>
+  <a href="shop.html">🛍️ সব পণ্য</a>
+  <a href="cart.html">🛒 কার্ট</a>
+</div>
+
+<section class="container" style="padding:30px 20px;">
+  <h1 class="section-title">🛒 আপনার কার্ট</h1>
+  <div class="cart-layout">
+    <div id="cartItemsContainer"></div>
+    <div class="summary-card" id="summaryCard">
+      <h3 style="margin-bottom:16px;">অর্ডার সামারি</h3>
+      <div class="summary-row"><span>সাবটোটাল</span><span id="subtotal">৳ 0</span></div>
+      <div class="summary-row"><span>ডেলিভারি চার্জ</span><span id="delivery">৳ 60</span></div>
+      <div class="summary-row total"><span>মোট</span><span id="grandTotal">৳ 0</span></div>
+      <button class="btn-primary" style="width:100%;margin-top:20px;" onclick="goCheckout()">
+        চেকআউট করুন →
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom">© 2025 ShopBD। সর্বস্বত্ব সংরক্ষিত।</div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

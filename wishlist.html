@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>পছন্দের তালিকা — আমার দোকান</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+<div id="drawerContainer"></div>
+
+<section class="container" style="padding:30px 20px;">
+  <h1 class="section-title">❤️ পছন্দের তালিকা</h1>
+
+  <div style="margin-bottom:16px;color:var(--text-muted);font-size:0.9rem;">
+    <span id="resultCount">লোড হচ্ছে...</span>
+  </div>
+
+  <div class="product-grid" id="wishlistGrid">
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+  </div>
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/wishlist.js"></script>
+</body>
+</html>
